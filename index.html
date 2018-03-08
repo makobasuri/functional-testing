@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Functional Counter</title>
+</head>
+<body>
+
+<style>
+	.center {
+		margin: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		text-align: center;
+	}
+
+	.counter {
+		padding: 0 20px 20px;
+		border: 1px solid rebeccapurple;
+	}
+</style>
+
+	<div class="center">
+
+		<div class="counter">
+			<p class="counter__num">0</p>
+			<button class="counter__btn">inc</button>
+		</div>
+
+		<div class="counter">
+			<p class="counter__num">0</p>
+			<button class="counter__btn">inc</button>
+		</div>
+
+	</div>
+
+<script>
+	let increment = function(element) {
+		let current = element.innerHTML
+		current++
+
+		element.innerHTML = current
+	};
+
+	let counterObjects = [];
+
+	let counters = Array.from(document.querySelectorAll('.counter'))
+
+	counters.forEach((element, index) => {
+		const btn = element.querySelector('button');
+		const num = element.querySelector('p');
+
+		counterObjects.push(Object.create({
+			btn: btn,
+			num: num
+		}))
+	})
+
+	console.log(counterObjects);
+
+	counterObjects.forEach((obj) => {
+		obj.btn.addEventListener('click', (event) => increment(obj.num))
+	})
+
+</script>
+</body>
+</html>
